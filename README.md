@@ -2,15 +2,44 @@
 
 Statische briefingpagina voor het weekend (HTML + plaatjes). Geschikt om op **GitHub Pages** te zetten en de link met je vrienden te delen.
 
-## Delen via GitHub Pages
+Deze map is al voorbereid als **git-repository** met branch **`main`** en een eerste commit (alle bestanden inclusief `images/`).
 
-1. Maak een **nieuwe repository** op GitHub (kan privé blijven als je wilt).
-2. Upload de **inhoud van deze map** naar de root van de repo (`index.html`, `images/`, deze `README.md`).
-3. Ga naar **Settings → Pages**.
-4. Bij **Build and deployment**: kies **Deploy from a branch**, branch **`main`** (of `master`), folder **`/ (root)`**.
-5. Na een minuut krijg je een URL zoals `https://jouw-gebruikersnaam.github.io/repo-naam/`.
+## Delen via GitHub Pages (aanbevolen: git push)
+
+1. Maak op [github.com](https://github.com/new) een **nieuwe repository**.  
+   **Belangrijk:** vink **geen** README, .gitignore of license aan (lege repo), anders krijg je merge-conflict bij de eerste push.
+
+2. Kopieer de HTTPS-URL van de repo, bv. `https://github.com/jouw-naam/geepshow-weekend-2026.git`.
+
+3. Open **PowerShell** in deze map (`geepshow-weekend-2026-site`) en voer uit:
+
+```powershell
+.\push-to-github.ps1 -RemoteUrl "https://github.com/JOUWUSER/JOUWREPO.git"
+```
+
+De eerste keer vraagt Windows/Git om in te loggen bij GitHub (browser of token).
+
+4. Ga in de repo naar **Settings → Pages**.  
+   **Source:** Deploy from a branch → **Branch `main`** → folder **`/ (root)`** → Save.
+
+5. Je deelbare link wordt (na ± 1 minuut):
+
+`https://JOUWUSER.github.io/JOUWREPO/`
 
 Alle asset-paden zijn relatief (`images/...`), dus de site werkt direct vanaf de repo-root.
+
+### Alternatief zonder command line
+
+Upload handmatig alle bestanden uit deze map naar een **lege** repo via de GitHub-webinterface (**Add file → Upload files**), daarna stap 4 hierboven.
+
+### Als `push` weigert (repo niet leeg)
+
+Als je de repo mét README hebt aangemaakt: in PowerShell in deze map:
+
+```powershell
+git pull origin main --allow-unrelated-histories
+git push -u origin main
+```
 
 ## Lokaal bekijken
 
