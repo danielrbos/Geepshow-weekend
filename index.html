@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEEPSHOW WEEKEND 2026 - Geclassificeerde briefing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #0a0a0f;
+            --gold: #d4a843;
+            --gold-light: #f0d078;
+            --red: #c0392b;
+            --white: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(212,168,67,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(192,57,43,0.06) 0%, transparent 50%),
+                var(--dark);
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60"><rect fill="none" width="60" height="60"/><circle fill="rgba(212,168,67,0.03)" cx="30" cy="30" r="1"/></svg>');
+            pointer-events: none;
+        }
+
+        .classified-stamp {
+            display: inline-block;
+            border: 3px solid var(--red);
+            color: var(--red);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            padding: 0.4rem 1.5rem;
+            transform: rotate(-3deg);
+            margin-bottom: 2rem;
+            animation: pulse-stamp 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-stamp {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            letter-spacing: 8px;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), #b8922e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .hero .date-badge {
+            background: linear-gradient(135deg, var(--gold), #b8922e);
+            color: var(--dark);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 3px;
+            padding: 0.6rem 2.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .hero .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            animation: bounce 2s infinite;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-12px); }
+            60% { transform: translateY(-6px); }
+        }
+
+        /* Group photo + roster */
+        .squad-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark) 0%, #111118 100%);
+        }
+
+        .squad-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .squad-section p {
+            color: rgba(255,255,255,0.5);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        }
+
+        .group-photo-container {
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(212,168,67,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .group-photo-container img {
+            width: 100%;
+            display: block;
+        }
+
+        .group-photo-container .add-on {
+            position: absolute;
+            width: clamp(90px, 14vw, 150px);
+            aspect-ratio: 1 / 1;
+            border-radius: 999px;
+            border: 3px solid rgba(212,168,67,0.95);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+            overflow: hidden;
+            background: rgba(10,10,15,0.65);
+            backdrop-filter: blur(2px);
+        }
+
+        .group-photo-container .add-on img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .group-photo-container .add-on.one { left: 1.2rem; bottom: 1.1rem; }
+        .group-photo-container .add-on.two { left: 6.2rem; bottom: 1.1rem; }
+
+        @media (max-width: 520px) {
+            .group-photo-container .add-on.one { left: 0.8rem; bottom: 0.8rem; }
+            .group-photo-container .add-on.two { left: 4.9rem; bottom: 0.8rem; }
+        }
+
+        .group-photo-container::after {
+            content: 'GEEPSHOW 2026';
+            position: absolute;
+            bottom: 1rem;
+            right: 1.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            background: rgba(10,10,15,0.72);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        .roster {
+            max-width: 900px;
+            margin: 2.2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+            text-align: left;
+        }
+
+        .roster .name {
+            padding: 0.9rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212,168,67,0.12);
+            background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            color: rgba(255,255,255,0.72);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .roster .name::before {
+            content: '•';
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        /* Logistics */
+        .logistics-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #111118, #0e0e16, #111118);
+        }
+
+        .logistics-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logistics-inner h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .logistics-inner .sub {
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .flight-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.6rem;
+        }
+
+        @media (max-width: 640px) {
+            .flight-cards { grid-template-columns: 1fr; }
+        }
+
+        .flight-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid rgba(212,168,67,0.15);
+            border-radius: 14px;
+            padding: 1.8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .flight-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .flight-card .flight-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.35);
+            margin-bottom: 0.5rem;
+        }
+
+        .flight-card .flight-dir {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .flight-card .flight-detail {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .flight-card .flight-time {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin: 0.3rem 0;
+        }
+
+        .luggage-section { margin-top: 1rem; }
+
+        .luggage-section h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .luggage-note {
+            text-align: center;
+            color: rgba(255,255,255,0.45);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            line-height: 1.65;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hints */
+        .hints-section {
+            padding: 5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hints-section .section-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .hints-section .section-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .hints-section .section-header p {
+            color: rgba(255,255,255,0.4);
+            font-size: 0.95rem;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .hints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .hint-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+            border: 1px solid rgba(212,168,67,0.12);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hint-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212,168,67,0.35);
+        }
+
+        .hint-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .hint-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem;
+            color: rgba(212,168,67,0.12);
+            position: absolute;
+            top: 0.5rem;
+            right: 1.2rem;
+            line-height: 1;
+        }
+
+        .hint-icon {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hint-card h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .hint-card p {
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .hint-meta {
+            margin-top: 1.1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            align-items: center;
+            color: rgba(255,255,255,0.35);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.28rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+
+        .pill strong {
+            color: rgba(255,255,255,0.55);
+            font-weight: 700;
+        }
+
+        .status-locked { border-color: rgba(192,57,43,0.25); background: rgba(192,57,43,0.07); }
+        .status-live { border-color: rgba(46,204,113,0.25); background: rgba(46,204,113,0.07); }
+
+        .hint-visual-wrap {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(212,168,67,0.18);
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: max-height 0.55s ease, opacity 0.45s ease, margin 0.45s ease, transform 0.45s ease;
+            margin-bottom: 0;
+        }
+
+        .hint-card--unlocked .hint-visual-wrap {
+            max-height: 220px;
+            opacity: 1;
+            margin-bottom: 1.1rem;
+            transform: translateY(0);
+        }
+
+        .hint-visual-wrap img {
+            width: 100%;
+            height: clamp(140px, 22vw, 180px);
+            object-fit: cover;
+            display: block;
+        }
+
+        .hint-visual-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(212,168,67,0.55);
+            margin-bottom: 0.45rem;
+            display: none;
+        }
+
+        .hint-card--unlocked .hint-visual-label {
+            display: block;
+        }
+
+        /* Kleding / Inpakken */
+        .dresscode-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #111118, #0d0d14, #111118);
+        }
+
+        .dresscode-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .dresscode-inner h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .dresscode-inner .sub {
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            max-width: 780px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.65;
+        }
+
+        .dresscode-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            text-align: left;
+        }
+
+        @media (max-width: 640px) {
+            .dresscode-grid { grid-template-columns: 1fr; }
+        }
+
+        .do-box, .dont-box {
+            border-radius: 14px;
+            padding: 2rem;
+        }
+
+        .do-box {
+            background: linear-gradient(145deg, rgba(46,204,113,0.08), rgba(46,204,113,0.02));
+            border: 1px solid rgba(46,204,113,0.2);
+        }
+
+        .dont-box {
+            background: linear-gradient(145deg, rgba(192,57,43,0.08), rgba(192,57,43,0.02));
+            border: 1px solid rgba(192,57,43,0.2);
+        }
+
+        .do-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: #2ecc71;
+            margin-bottom: 1rem;
+        }
+
+        .dont-box h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--red);
+            margin-bottom: 1rem;
+        }
+
+        .do-box li, .dont-box li {
+            list-style: none;
+            padding: 0.5rem 0;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .do-box li::before { content: '\2713'; color: #2ecc71; font-weight: 700; }
+        .dont-box li::before { content: '\2717'; color: var(--red); font-weight: 700; }
+
+        .dresscode-note {
+            margin-top: 2rem;
+            padding: 1.2rem 1.5rem;
+            background: rgba(212,168,67,0.06);
+            border-left: 3px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            text-align: left;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* Aftellen */
+        .countdown-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--dark), #111118);
+        }
+
+        .countdown-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .countdown-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: linear-gradient(145deg, rgba(212,168,67,0.1), rgba(212,168,67,0.02));
+            border: 1px solid rgba(212,168,67,0.2);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            min-width: 100px;
+        }
+
+        .countdown-box .number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3rem;
+            color: var(--gold-light);
+            line-height: 1;
+        }
+
+        .countdown-box .label {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+        }
+
+        /* Regels */
+        .rules-section {
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+        }
+
+        .rules-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .rules-list {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .rules-list li {
+            list-style: none;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.55);
+            font-size: 0.95rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .rules-list li span.rule-num {
+            font-family: 'Bebas Neue', sans-serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            min-width: 28px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.2);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="classified-stamp">GECLASSIFICEERDE BRIEFING</div>
+        <h1>GEEPSHOW<br>WEEKEND</h1>
+        <p class="subtitle">Locatie onbekend &bull; Details geheim</p>
+        <div class="date-badge">VR &ndash; ZO &bull; 19&ndash;21 JUNI 2026</div>
+        <div class="scroll-hint" onclick="document.querySelector('.squad-section').scrollIntoView({behavior:'smooth'})">&#8595;</div>
+    </section>
+
+    <!-- SQUAD -->
+    <section class="squad-section">
+        <div class="reveal">
+            <h2>De Squad</h2>
+            <p>
+                Tien man. Eén missie. Een weekend vol zon, zee, legendarisch eten en twijfelachtige beslissingen.
+                De bestemming blijft verzegeld&mdash;voor nu.
+            </p>
+
+            <div class="group-photo-container">
+                <img src="images/PHOTO-2023-06-04-14-35-57.jpg" alt="Geepshow weekend - de squad">
+                <div class="add-on one" aria-label="Toegevoegd lid 1">
+                    <img src="images/addon-1.JPG" alt="Toegevoegd lid 1">
+                </div>
+                <div class="add-on two" aria-label="Toegevoegd lid 2">
+                    <img src="images/addon-2.JPG" alt="Toegevoegd lid 2">
+                </div>
+            </div>
+
+            <div class="roster" aria-label="Deelnemers">
+                <div class="name">Jordi Nagtegaal</div>
+                <div class="name">Thijs van Brenk</div>
+                <div class="name">Jeffrey Brouwer</div>
+                <div class="name">Bas van Egdom</div>
+                <div class="name">Mike Snel</div>
+                <div class="name">Jonathan Uittenbogaard</div>
+                <div class="name">Djardo Boele</div>
+                <div class="name">Daniel Bos</div>
+                <div class="name">Marvin Kamermans</div>
+                <div class="name">Thijs Lekkerkerker</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOGISTICS -->
+    <section class="logistics-section">
+        <div class="logistics-inner reveal">
+            <h2>&#9992; Reislogistiek</h2>
+            <p class="sub">De enige harde feiten die je krijgt. Kom niet te laat.</p>
+
+            <div class="flight-cards">
+                <div class="flight-card">
+                    <div class="flight-label">Vertrek</div>
+                    <div class="flight-dir">Schiphol &rarr; ???</div>
+                    <div class="flight-detail">Vrijdag &bull; 19 juni</div>
+                    <div class="flight-time">08:00</div>
+                    <div class="flight-detail">Wees bij <strong style="color:var(--gold-light)">Schiphol</strong> (klaar om te gaan)</div>
+                </div>
+                <div class="flight-card">
+                    <div class="flight-label">Terug</div>
+                    <div class="flight-dir">??? &rarr; Schiphol</div>
+                    <div class="flight-detail">Zondag &bull; 21 juni</div>
+                    <div class="flight-time">~15:00 CET</div>
+                    <div class="flight-detail">Terug op <strong style="color:var(--gold-light)">Schiphol</strong>, levend (hopelijk)</div>
+                </div>
+            </div>
+
+            <div class="luggage-section">
+                <h3>&#128188; Bagagerestrictie</h3>
+                <p class="luggage-note">
+                    Eén tas: <strong style="color:var(--gold-light)">een grote duffelbag die onder de stoel past</strong>.
+                    Pak slim in: zwemkleding, zomeritems en één nette avondoutfit.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HINTS -->
+    <section class="hints-section">
+        <div class="section-header reveal">
+            <h2>Intel-drops</h2>
+            <p>
+                Vier hints. Elke hint komt op een ander moment vrij (of je zet ze handmatig live).
+                De hints hieronder zijn expres vaag&mdash;genoeg om hype te bouwen, niet genoeg om het weekend te verklappen.
+            </p>
+        </div>
+
+        <div class="hints-grid">
+            <div class="hint-card reveal" id="hint-card-1">
+                <div class="hint-number">01</div>
+                <div class="hint-icon">&#127961;</div>
+                <h3>De Stad van de Anarchie</h3>
+                <div class="hint-visual-label">Intel-beeld</div>
+                <div class="hint-visual-wrap" aria-hidden="true">
+                    <img id="hint-img-1" alt="" decoding="async">
+                </div>
+                <p id="hint-text-1">Heren, bereid je voor op een stad waar verkeersregels suggesties zijn en de chaos een kunstvorm. Pak kleding in waarin je comfortabel bier drinkt terwijl de wereld om je heen explodeert van cultuur en lawaai.</p>
+                <div class="hint-meta">
+                    <span class="pill"><strong>Vrij</strong> <span id="hint-when-1">TBD</span></span>
+                    <span class="pill status-locked" id="hint-status-1">&#128274; Vergrendeld</span>
+                </div>
+            </div>
+
+            <div class="hint-card reveal" id="hint-card-2">
+                <div class="hint-number">02</div>
+                <div class="hint-icon">&#9968;&#65039;</div>
+                <h3>De Verticale Uitdaging</h3>
+                <div class="hint-visual-label">Intel-beeld</div>
+                <div class="hint-visual-wrap" aria-hidden="true">
+                    <img id="hint-img-2" alt="" decoding="async">
+                </div>
+                <p id="hint-text-2">Houd je niet van hoogtes? Perfect—dan wordt dit je cardio met bonuspanorama. Trek stevige schoenen aan: we zoeken omhoog, een beetje zweethulp en een punt waar je even boven alles uitsteekt. Wat daar precies onder je ligt: nog classified.</p>
+                <div class="hint-meta">
+                    <span class="pill"><strong>Vrij</strong> <span id="hint-when-2">TBD</span></span>
+                    <span class="pill status-locked" id="hint-status-2">&#128274; Vergrendeld</span>
+                </div>
+            </div>
+
+            <div class="hint-card reveal" id="hint-card-3">
+                <div class="hint-number">03</div>
+                <div class="hint-icon">&#9973;</div>
+                <h3>PK&apos;s op het Water</h3>
+                <div class="hint-visual-label">Intel-beeld</div>
+                <div class="hint-visual-wrap" aria-hidden="true">
+                    <img id="hint-img-3" alt="" decoding="async">
+                </div>
+                <p id="hint-text-3">Laat je zwemdiploma A maar uit de kast, Operation Blackout gaat nat. We gaan de wetten van de fysica tarten met brute paardenkrachten op de golven, richting een eiland dat te mooi is voor jouw Instagram-feed.</p>
+                <div class="hint-meta">
+                    <span class="pill"><strong>Vrij</strong> <span id="hint-when-3">TBD</span></span>
+                    <span class="pill status-locked" id="hint-status-3">&#128274; Vergrendeld</span>
+                </div>
+            </div>
+
+            <div class="hint-card reveal" id="hint-card-4">
+                <div class="hint-number">04</div>
+                <div class="hint-icon">&#127829;</div>
+                <h3>Vloeibare Adrenaline</h3>
+                <div class="hint-visual-label">Intel-beeld</div>
+                <div class="hint-visual-wrap" aria-hidden="true">
+                    <img id="hint-img-4" alt="" decoding="async">
+                </div>
+                <p id="hint-text-4">Vergeet je gezonde verstand en je dieet. We gaan naar de bron van het vloeibare goud waar de citroenen groter zijn dan je ego en de nachten eindigen in een waas van smaakexplosies.</p>
+                <div class="hint-meta">
+                    <span class="pill"><strong>Vrij</strong> <span id="hint-when-4">TBD</span></span>
+                    <span class="pill status-locked" id="hint-status-4">&#128274; Vergrendeld</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KLEDING / INPAKKEN -->
+    <section class="dresscode-section">
+        <div class="dresscode-inner reveal">
+            <h2>Inpakken &amp; kleding</h2>
+            <p class="sub">
+                Verwachte vibe: <strong style="color:var(--gold-light)">25&ndash;30&deg;C</strong>. We hebben water-actie, late diners en minimaal één grote avond.
+                Pak licht in, pak scherp in.
+            </p>
+
+            <div class="dresscode-grid">
+                <div class="do-box">
+                    <h3>&#10003; Neem mee</h3>
+                    <ul>
+                        <li>Zwemkleding</li>
+                        <li>Zomerfits: tees/polo’s, shorts, linnen overhemd</li>
+                        <li>Avondkleding: party outfit (bijv. overhemd)</li>
+                        <li>Comfortabele sportschoenen/sneakers</li>
+                        <li>Zonnebril + zonnebrand</li>
+                        <li>Één lichte laag voor ’s avonds (optioneel)</li>
+                    </ul>
+                </div>
+                <div class="dont-box">
+                    <h3>&#10007; Vermijd</h3>
+                    <ul>
+                        <li>Overpakken (het is een duffel onder de stoel, lads)</li>
+                        <li>Alleen slippers (krijg je spijt van)</li>
+                        <li>Zware jeans overdag (te warm)</li>
+                        <li>Nieuwe schoenen die je niet ingelopen hebt</li>
+                        <li>Grote toiletspullen / lompe flessen</li>
+                        <li>Alles dat “luchthaven-toerist” schreeuwt</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dresscode-note">
+                <strong style="color: var(--gold);">Avond-standaard:</strong> Een <strong>party outfit (bijv. overhemd)</strong>, fatsoenlijke schoenen en “dit is bewust gekozen” energie.
+                Er is minimaal één serieuze party night en een paar toprestaurants&mdash;je gaat jezelf later bedanken.
+            </div>
+        </div>
+    </section>
+
+    <!-- AFTELLEN -->
+    <section class="countdown-section">
+        <div class="reveal">
+            <h2>Aftellen tot Schiphol (08:00)</h2>
+            <div class="countdown-boxes" id="countdown">
+                <div class="countdown-box">
+                    <div class="number" id="cd-days">--</div>
+                    <div class="label">Dagen</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="cd-hours">--</div>
+                    <div class="label">Uren</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="cd-mins">--</div>
+                    <div class="label">Minuten</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="number" id="cd-secs">--</div>
+                    <div class="label">Seconden</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REGELS -->
+    <section class="rules-section">
+        <div class="reveal">
+            <h2>De regels</h2>
+            <ul class="rules-list">
+                <li><span class="rule-num">01</span> Wat gebeurt op Geepshow Weekend blijft op Geepshow Weekend.</li>
+                <li><span class="rule-num">02</span> 08:00 op Schiphol betekent 08:00 op Schiphol.</li>
+                <li><span class="rule-num">03</span> Alleen duffel onder de stoel: pak in als een pro.</li>
+                <li><span class="rule-num">04</span> Zwemkleding + party outfit (bijv. overhemd): niet onderhandelbaar.</li>
+                <li><span class="rule-num">05</span> Vertrouw het plan. Vraag niet naar de bestemming in openbare kanalen.</li>
+                <li><span class="rule-num">06</span> Breng energie. Deel rondes. Geen meelifters.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        GEEPSHOW WEEKEND &bull; GEHEIM &bull; 2026
+    </footer>
+
+    <script>
+        /**
+         * HINT-CONFIG (pas dit aan als je de HTML wil updaten)
+         *
+         * - Pas `activeFromLocal` aan om te bepalen wanneer een hint automatisch live gaat.
+         * - `imageSrc`: wordt pas geladen als de hint vrijkomt (geen spoiler in netwerk-tab vóór unlock).
+         * - Tip 3 en 4 zijn omgewisseld t.o.v. de oorspronkelijke nummering (PK&apos;s = #3, Vloeibare Adrenaline = #4).
+         */
+        const HINT_IMAGE_BASE = 'images/';
+        const HINTS = [
+            {
+                id: 1,
+                icon: '🏙️',
+                title: 'De Stad van de Anarchie',
+                activeFromLocal: new Date(2026, 4, 6, 19, 0, 0), // 6 mei 2026, 19:00 (morgen)
+                imageSrc: HINT_IMAGE_BASE + 'hint-01.jpg',
+                text: 'Heren, bereid je voor op een stad waar verkeersregels suggesties zijn en de chaos een kunstvorm. Pak kleding in waarin je comfortabel bier drinkt terwijl de wereld om je heen explodeert van cultuur en lawaai.'
+            },
+            {
+                id: 2,
+                icon: '⛰️',
+                title: 'De Verticale Uitdaging',
+                activeFromLocal: new Date(2026, 4, 20, 12, 0, 0), // 20 mei 2026, 12:00 (over twee weken)
+                imageSrc: HINT_IMAGE_BASE + 'hint-02.jpg',
+                text: 'Houd je niet van hoogtes? Perfect—dan wordt dit je cardio met bonuspanorama. Trek stevige schoenen aan: we zoeken omhoog, een beetje zweethulp en een punt waar je even boven alles uitsteekt. Wat daar precies onder je ligt: nog classified.'
+            },
+            {
+                id: 3,
+                icon: '⛵',
+                title: 'PK\'s op het Water',
+                activeFromLocal: new Date(2026, 5, 10, 18, 0, 0), // 10 juni 2026, 18:00
+                imageSrc: HINT_IMAGE_BASE + 'hint-03.jpg',
+                text: 'Laat je zwemdiploma A maar uit de kast, Operation Blackout gaat nat. We gaan de wetten van de fysica tarten met brute paardenkrachten op de golven, richting een eiland dat te mooi is voor jouw Instagram-feed.'
+            },
+            {
+                id: 4,
+                icon: '🍕',
+                title: 'Vloeibare Adrenaline',
+                activeFromLocal: new Date(2026, 5, 16, 20, 0, 0), // 16 juni 2026, 20:00
+                imageSrc: HINT_IMAGE_BASE + 'hint-04.jpg',
+                text: 'Vergeet je gezonde verstand en je dieet. We gaan naar de bron van het vloeibare goud waar de citroenen groter zijn dan je ego en de nachten eindigen in een waas van smaakexplosies.'
+            }
+        ];
+
+        // Handmatige override (zet op true om alle hints meteen te tonen)
+        const FORCE_REVEAL_ALL_HINTS = false;
+
+        const WEEKEND_START = new Date(2026, 5, 19, 8, 0, 0); // 19 juni 2026, 08:00
+
+        function fmtLocal(dt) {
+            try {
+                return dt.toLocaleString(undefined, { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
+            } catch {
+                return String(dt);
+            }
+        }
+
+        function applyHints() {
+            const now = new Date();
+            HINTS.forEach(h => {
+                const live = FORCE_REVEAL_ALL_HINTS || now >= h.activeFromLocal;
+
+                const card = document.getElementById(`hint-card-${h.id}`);
+                const text = document.getElementById(`hint-text-${h.id}`);
+                const when = document.getElementById(`hint-when-${h.id}`);
+                const status = document.getElementById(`hint-status-${h.id}`);
+
+                if (!card || !text || !when || !status) return;
+
+                const iconEl = card.querySelector('.hint-icon');
+                const titleEl = card.querySelector('h3');
+                const hintImg = document.getElementById(`hint-img-${h.id}`);
+                if (iconEl) iconEl.textContent = h.icon;
+                if (titleEl) titleEl.textContent = h.title;
+
+                when.textContent = fmtLocal(h.activeFromLocal);
+
+                if (live) {
+                    text.textContent = h.text;
+                    status.textContent = '🔓 Live';
+                    status.classList.remove('status-locked');
+                    status.classList.add('status-live');
+                    card.classList.add('hint-card--unlocked');
+                    card.querySelectorAll('.hint-visual-wrap').forEach(el => { el.setAttribute('aria-hidden', 'false'); });
+                    if (hintImg && h.imageSrc) {
+                        if (!hintImg.getAttribute('src')) hintImg.src = h.imageSrc;
+                    }
+                } else {
+                    text.textContent = 'Verzegeld. Kom terug zodra de intel dropt.';
+                    status.textContent = '🔒 Vergrendeld';
+                    status.classList.remove('status-live');
+                    status.classList.add('status-locked');
+                    card.classList.remove('hint-card--unlocked');
+                    card.querySelectorAll('.hint-visual-wrap').forEach(el => { el.setAttribute('aria-hidden', 'true'); });
+                    if (hintImg) {
+                        hintImg.removeAttribute('src');
+                        hintImg.removeAttribute('alt');
+                    }
+                }
+            });
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = WEEKEND_START - now;
+            if (diff <= 0) {
+                document.getElementById('cd-days').textContent = '00';
+                document.getElementById('cd-hours').textContent = '00';
+                document.getElementById('cd-mins').textContent = '00';
+                document.getElementById('cd-secs').textContent = '00';
+                return;
+            }
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+            document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+            document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+            document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+        }
+
+        applyHints();
+        setInterval(applyHints, 30 * 1000);
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
+
+
