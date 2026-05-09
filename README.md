@@ -24,9 +24,19 @@ De eerste keer vraagt Windows/Git om in te loggen bij GitHub (browser of token).
 
 5. Je deelbare link wordt (na ± 1 minuut):
 
-`https://JOUWUSER.github.io/JOUWREPO/`
+`https://danielrbos.github.io/Geepshow-weekend/`
 
 Alle asset-paden zijn relatief (`images/...`), dus de site werkt direct vanaf de repo-root.
+
+### Als je nog een 404 ziet op github.io
+
+De code kan al op GitHub staan, maar **Pages moet eenmalig aan**. Kies **één** van deze twee:
+
+**Optie A — Branch (meest simpel)**  
+Settings → Pages → Build and deployment → **Deploy from a branch** → Branch **main** → **/ (root)** → Save. Wacht 1–2 minuten en ververs `https://danielrbos.github.io/Geepshow-weekend/`.
+
+**Optie B — GitHub Actions (automatisch bij elke push)**  
+Settings → Pages → Source: **GitHub Actions**. Er staat een workflow in `.github/workflows/pages.yml`; na de eerste push naar `main` draait die en publiceert de site. Controleer tab **Actions** als de eerste run wacht op goedkeuring.
 
 ### Alternatief zonder command line
 
