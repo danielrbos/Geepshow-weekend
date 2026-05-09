@@ -791,8 +791,8 @@
 
             <div class="hint-card reveal" id="hint-card-2">
                 <div class="hint-number">02</div>
-                <div class="hint-icon">&#9968;&#65039;</div>
-                <h3>De Verticale Uitdaging</h3>
+                <div class="hint-icon">&#128274;</div>
+                <h3>Intel-drop #02</h3>
                 <div class="hint-visual-label">Intel-beeld</div>
                 <div class="hint-visual-wrap" aria-hidden="true">
                     <img id="hint-img-2" alt="" decoding="async">
@@ -806,8 +806,8 @@
 
             <div class="hint-card reveal" id="hint-card-3">
                 <div class="hint-number">03</div>
-                <div class="hint-icon">&#9973;</div>
-                <h3>PK&apos;s op het Water</h3>
+                <div class="hint-icon">&#128274;</div>
+                <h3>Intel-drop #03</h3>
                 <div class="hint-visual-label">Intel-beeld</div>
                 <div class="hint-visual-wrap" aria-hidden="true">
                     <img id="hint-img-3" alt="" decoding="async">
@@ -821,8 +821,8 @@
 
             <div class="hint-card reveal" id="hint-card-4">
                 <div class="hint-number">04</div>
-                <div class="hint-icon">&#127829;</div>
-                <h3>Vloeibare Adrenaline</h3>
+                <div class="hint-icon">&#128274;</div>
+                <h3>Intel-drop #04</h3>
                 <div class="hint-visual-label">Intel-beeld</div>
                 <div class="hint-visual-wrap" aria-hidden="true">
                     <img id="hint-img-4" alt="" decoding="async">
@@ -928,6 +928,7 @@
          * - Pas `activeFromLocal` aan om te bepalen wanneer een hint automatisch live gaat.
          * - `imageSrc`: wordt pas geladen als de hint vrijkomt (geen spoiler in netwerk-tab vóór unlock).
          * - Tip 3 en 4 zijn omgewisseld t.o.v. de oorspronkelijke nummering (PK&apos;s = #3, Vloeibare Adrenaline = #4).
+         * - Tips 2–4: titel en icoon blijven verborgen tot de hint live gaat (geen spoilers in de UI).
          */
         const HINT_IMAGE_BASE = 'images/';
         const HINTS = [
@@ -993,12 +994,12 @@
                 const iconEl = card.querySelector('.hint-icon');
                 const titleEl = card.querySelector('h3');
                 const hintImg = document.getElementById(`hint-img-${h.id}`);
-                if (iconEl) iconEl.textContent = h.icon;
-                if (titleEl) titleEl.textContent = h.title;
 
                 when.textContent = fmtLocal(h.activeFromLocal);
 
                 if (live) {
+                    if (iconEl) iconEl.textContent = h.icon;
+                    if (titleEl) titleEl.textContent = h.title;
                     text.textContent = h.text;
                     status.textContent = '🔓 Live';
                     status.classList.remove('status-locked');
@@ -1009,6 +1010,13 @@
                         if (!hintImg.getAttribute('src')) hintImg.src = h.imageSrc;
                     }
                 } else {
+                    if (h.id >= 2) {
+                        if (iconEl) iconEl.textContent = '🔒';
+                        if (titleEl) titleEl.textContent = 'Intel-drop #' + String(h.id).padStart(2, '0');
+                    } else {
+                        if (iconEl) iconEl.textContent = h.icon;
+                        if (titleEl) titleEl.textContent = h.title;
+                    }
                     text.textContent = 'Verzegeld. Kom terug zodra de intel dropt.';
                     status.textContent = '🔒 Vergrendeld';
                     status.classList.remove('status-live');
