@@ -352,8 +352,11 @@
         .etiquette-photo img {
             width: 100%;
             display: block;
-            object-fit: cover;
-            aspect-ratio: 4 / 3;
+            object-fit: contain;
+            object-position: center;
+            height: auto;
+            max-height: min(520px, 55vh);
+            background: rgba(0,0,0,0.25);
         }
 
         .etiquette-section .etiquette-head h2 {
@@ -849,7 +852,7 @@
     <section class="etiquette-section">
         <div class="etiquette-inner reveal">
             <div class="etiquette-photo">
-                <img src="images/weekend-etiquette.jpg" alt="Weekend etiquette — de regels zijn duidelijk">
+                <img src="images/weekend-etiquette-collage.png" alt="Weekend etiquette: trek een adt, geen rust, altijd door">
             </div>
             <div class="etiquette-head">
                 <h2>De weekend-etiquette<br><span style="font-size:0.55em; letter-spacing:3px; color:rgba(212,168,67,0.75)">(Huisregels)</span></h2>
